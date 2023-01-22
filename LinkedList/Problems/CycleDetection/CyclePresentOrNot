@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/linked-list-cycle
+
+*here in this problem, we are asked to find if there is any cycle or not.
+*here we will be using two pointer method.
+*there will be two pointers, one is slow and another one is two times faster than the slower one.
+*if there is a loop or cycle present in the linkedlist, the two pointers will definately meet.
+*once they meet, we will return true. Or we will return false.
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode p1=head;
+        ListNode p2=head;
+        
+        while(p2!=null && p2.next!=null){
+            p1=p1.next;
+            p2=p2.next.next;
+            if(p1==p2){
+                return true;
+            }
+        }
+        return false;
+    }
+}

@@ -1,0 +1,54 @@
+// https://leetcode.com/problems/merge-two-sorted-lists
+
+*first check which node got the lowest value, if its the first one, then attach that node to the next of newly created linkedlist.
+*then move the pointer of these two lists forward
+*keep checking 
+*thus one list will be done with traversing , then add remaining list of the other list to the tail of newly created list. 
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode dummyHead=new ListNode();
+        ListNode tail=dummyHead;
+        
+        while(list1!=null && list2!=null){
+            if(list1.val<list2.val){
+                //attach that node to the next of newly created linkedlist
+                tail.next=list1;
+                
+                //move the pointer ahead
+                list1=list1.next;
+
+                //as we need to attach the next node to the next of it, making tail the last is important
+                tail=tail.next;
+            }
+            else{
+                tail.next=list2;
+                list2=list2.next;
+                tail=tail.next;
+            }
+            
+        }
+        
+        //one of the two is done with traversing, so attach the rest of the other list
+        if(list1 !=null){
+            tail.next=list1;
+        }
+        else{
+            tail.next=list2;
+        }
+        return dummyHead.next;
+        
+        
+        
+    }
+}

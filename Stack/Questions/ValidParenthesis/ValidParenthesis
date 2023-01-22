@@ -1,0 +1,54 @@
+// https://leetcode.com/problems/valid-parentheses/submissions/
+// https://www.hackerrank.com/challenges/java-stack/copy-from/296933718
+import java.util.*;
+class Solution{
+	
+	public static void main(String []argh)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		while (sc.hasNext()) {
+			String input=sc.next();
+            //Complete the code
+            int counter=input.length();
+            int i=0;
+            Stack<Character> stack=new Stack<>();
+            while(counter>0){
+                char symbol=input.charAt(i);
+                if(symbol=='('|| symbol=='{'|| symbol=='['){
+                    stack.push(symbol);
+                    i++;
+                    counter--;
+                    // System.out.println(counter);
+                    // System.out.println(i);
+                }
+                else{
+                    if(stack.empty()){
+                        // System.out.println("false");
+                        break;
+                    }
+                    else {
+                        char openBrac=stack.pop();
+                        if(
+                            (symbol==']' && openBrac=='[' )||
+                            (symbol=='}' && openBrac=='{' )||
+                            (symbol==')' && openBrac=='(' )){
+                                counter--;
+                                i++;
+                            }
+                        
+                    //         System.out.println(counter);
+                    // System.out.println(i);
+                            
+                }    
+                // System.out.println(counter);
+                    }
+                    
+                    
+            }
+        System.out.println(stack.empty() && counter==0);
+            
+        }
+		
+	}
+}
